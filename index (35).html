@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather App - Tugas Rutin 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gSun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe680"/><stop offset="1" stop-color="#ffb320"/></linearGradient>
+    <linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#bfc7e6"/></linearGradient>
+    <linearGradient id="gCloudD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3e6f6"/><stop offset="1" stop-color="#8d96bd"/></linearGradient>
+    <linearGradient id="gMoon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#f2c94c"/></linearGradient>
+  </defs>
+</svg>
+
+<main class="stage">
+  <!-- LAYAR 1 -->
+  <section class="phone" id="home">
+    <div class="status">
+      <span id="clock">9:41</span>
+      <span class="r">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="#fff"><rect x="0" y="7" width="3" height="4" rx=".6"/><rect x="4.3" y="5" width="3" height="6" rx=".6"/><rect x="8.6" y="2.5" width="3" height="8.5" rx=".6"/><rect x="12.9" y="0" width="3" height="11" rx=".6"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M3.8 6.9a6.2 6.2 0 0 1 8.4 0"/><circle cx="8" cy="10" r="1" fill="#fff"/></svg>
+        <svg width="24" height="12" viewBox="0 0 24 12"><rect x=".5" y=".5" width="20" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#fff"/><rect x="22" y="4" width="1.6" height="4" rx=".8" fill="#fff" opacity=".6"/></svg>
+      </span>
+    </div>
+
+    <div class="topbar">
+      <button class="iconbtn" id="menuBtn" type="button" aria-label="Menu pencarian" aria-expanded="false" aria-controls="menu">
+        <svg width="28" height="14" viewBox="0 0 28 14" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="1" y1="2" x2="27" y2="2"/><line x1="1" y1="11" x2="17" y2="11"/></svg>
+      </button>
+      <span class="iconbtn" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </span>
+    </div>
+
+    <div class="menu" id="menu">
+      <form class="search" id="form" autocomplete="off">
+        <input id="city" type="text" placeholder="Cari kota, contoh: Medan" aria-label="Nama kota">
+        <button type="submit" id="btn">Cari</button>
+      </form>
+      <div class="history" id="history"></div>
+      <div class="units" role="group" aria-label="Satuan suhu">
+        <button type="button" data-unit="C" class="active">&deg;C</button>
+        <button type="button" data-unit="F">&deg;F</button>
+      </div>
+    </div>
+
+    <div class="error" id="error" role="alert" aria-live="polite">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v6M12 17h.01"/></svg>
+      <span id="errorText"></span>
+    </div>
+
+    <div class="loading" id="loading" aria-label="Memuat"><div class="spinner"></div></div>
+
+    <div class="empty" id="empty">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#d9a8f0" stroke-width="3" stroke-linecap="round"><path d="M20 44h26a10 10 0 0 0 1-19.9A14 14 0 0 0 20 26a9 9 0 0 0 0 18z"/></svg>
+      Buka menu di kiri atas, lalu cari nama kota untuk melihat cuacanya.
+    </div>
+
+    <div id="result" class="hidden">
+      <h1 class="city" id="cityName"></h1>
+      <div class="main">
+        <div class="big" id="bigIcon"></div>
+        <h2 id="title"></h2>
+        <div class="date" id="date"></div>
+        <div class="temp"><span id="tempNum"></span><i></i></div>
+        <div class="mini">
+          
+          
+          
+        </div>
+      </div>
+      <div class="today">
+        <h3>Hari ini</h3>
+        <a href="#week">5 hari &rsaquo;</a>
+      </div>
+      <div class="hours" id="hours"></div>
+    </div>
+  </section>
+
+  <!-- LAYAR 2 -->
+  <section class="phone" id="week">
+    <div class="status">
+      <span id="clock2">9:41</span>
+      <span class="r">
+        <svg width="16" height="11" viewBox="0 0 16 11" fill="#fff"><rect x="0" y="7" width="3" height="4" rx=".6"/><rect x="4.3" y="5" width="3" height="6" rx=".6"/><rect x="8.6" y="2.5" width="3" height="8.5" rx=".6"/><rect x="12.9" y="0" width="3" height="11" rx=".6"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M3.8 6.9a6.2 6.2 0 0 1 8.4 0"/><circle cx="8" cy="10" r="1" fill="#fff"/></svg>
+        <svg width="24" height="12" viewBox="0 0 24 12"><rect x=".5" y=".5" width="20" height="11" rx="3" fill="none" stroke="#fff" opacity=".5"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#fff"/><rect x="22" y="4" width="1.6" height="4" rx=".8" fill="#fff" opacity=".6"/></svg>
+      </span>
+    </div>
+    <div class="topbar">
+      <a class="iconbtn" href="#home" aria-label="Kembali">
+        <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2L3 11l8 9"/></svg>
+      </a>
+      <span class="iconbtn" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </span>
+    </div>
+    <h2 class="title">5 hari ke depan</h2>
+    <div class="note" id="weekEmpty">Belum ada data. Cari kota terlebih dahulu.</div>
+    <div id="weekBody" class="hidden">
+      <div class="hl" id="hl"></div>
+      <div id="list"></div>
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

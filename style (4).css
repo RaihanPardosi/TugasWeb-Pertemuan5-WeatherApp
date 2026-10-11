@@ -1,0 +1,80 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:"Quicksand","Nunito","Segoe UI",system-ui,sans-serif;color:#fff;background:linear-gradient(180deg,#55498b 0%,#2b2162 55%,#1a1445 100%) fixed;padding:36px 16px}
+button,input{font:inherit;color:inherit}
+svg{display:block}
+a{color:inherit}
+.hidden{display:none!important}
+.stage{display:flex;gap:56px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.phone{position:relative;width:340px;min-height:720px;border-radius:36px;background:linear-gradient(180deg,#37288e,#2b1f78);padding:20px 22px 30px;box-shadow:0 24px 60px rgba(10,5,40,.45)}
+.status{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;margin-bottom:24px}
+.status .r{display:flex;gap:6px;align-items:center}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.iconbtn{background:none;border:0;cursor:pointer;padding:4px;display:flex;align-items:center;color:#fff;text-decoration:none}
+.city{font-size:1.25rem;font-weight:500;margin-bottom:18px}
+.menu{display:none;position:absolute;top:92px;left:16px;right:16px;z-index:5;background:#241a66;border-radius:18px;padding:14px;box-shadow:0 16px 40px rgba(0,0,0,.5);flex-direction:column;gap:12px}
+.menu.open{display:flex}
+.search{display:flex;gap:8px}
+.search input{flex:1;min-width:0;background:#30267c;border:1px solid transparent;border-radius:12px;padding:10px 14px;outline:none}
+.search input:focus{border-color:#d9a8f0}
+.search input::placeholder{color:#9890d0}
+.search button{border:0;border-radius:12px;padding:0 16px;background:#d9a8f0;color:#2b1d63;font-weight:600;cursor:pointer}
+.search button:disabled{opacity:.6;cursor:wait}
+.history{display:flex;flex-wrap:wrap;gap:6px}
+.history:empty{display:none}
+.chip{border:0;cursor:pointer;background:#30267c;padding:5px 11px;border-radius:999px;font-size:.8rem}
+.chip:hover{background:#d9a8f0;color:#2b1d63}
+.chip.clear{background:transparent;color:#9890d0;text-decoration:underline}
+.units{display:flex;background:#30267c;border-radius:999px;padding:3px;align-self:flex-start}
+.units button{border:0;background:transparent;padding:4px 14px;border-radius:999px;cursor:pointer;color:#9890d0}
+.units button.active{background:#d9a8f0;color:#2b1d63;font-weight:600}
+.error{display:none;align-items:center;gap:10px;background:rgba(255,107,139,.14);border:1px solid #ff6b8b;color:#ffc2d0;border-radius:12px;padding:10px 14px;font-size:.85rem;margin-bottom:16px}
+.error.show{display:flex}
+.error svg{flex:none}
+.loading{display:none;justify-content:center;padding:150px 0}
+.loading.show{display:flex}
+.spinner{width:44px;height:44px;border:4px solid #30267c;border-top-color:#d9a8f0;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;color:#a9a1dc;padding:110px 10px;line-height:1.6;font-size:.95rem}
+.empty svg{width:72px;height:72px;margin:0 auto 14px}
+.main{border-radius:20px;background:linear-gradient(180deg,#231b5f,#1d1550);padding:22px 14px 16px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08)}
+.main .big svg{width:96px;height:96px;margin:0 auto}
+.main h2{font-size:1.5rem;font-weight:500;letter-spacing:1.5px;margin-top:4px}
+.main .date{color:#9890d0;font-size:.85rem;letter-spacing:1px;margin-top:4px}
+.temp{font-size:4.4rem;font-weight:500;line-height:1.1;margin:10px 0 20px;display:inline-block;position:relative}
+.temp i{position:absolute;top:12px;right:-15px;width:12px;height:12px;border-radius:50%;background:#fff}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mini div{background:#2b2170;border-radius:10px;padding:10px 2px 9px;font-size:.8rem;border-top:2px solid rgba(255,255,255,.08)}
+.mini svg{width:44px;height:44px;margin:0 auto 4px}
+.mini small{display:block;letter-spacing:1px;font-size:.68rem;margin-top:2px;color:#d6d1f5}
+.today{display:flex;justify-content:space-between;align-items:baseline;margin:24px 0 12px}
+.today h3{font-size:1.2rem;font-weight:500}
+.today a{font-size:.85rem;text-decoration:none;opacity:.85}
+.hours{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.hour{background:#2b2170;border-radius:10px;padding:9px 2px 10px;text-align:center;font-size:.66rem;min-width:0}
+.hour .badge{width:42px;height:42px;border-radius:50%;margin:0 auto 7px;display:flex;align-items:center;justify-content:center}
+.hour .badge svg{width:30px;height:30px}
+.hour b{display:block;font-size:.95rem;font-weight:500;margin-top:2px}
+.hour.now{background:#d9a8f0}
+.hour.now .badge{background:rgba(255,255,255,.65)!important}
+.badge.sun{background:linear-gradient(135deg,#ff5f7e,#ffa63d)}
+.badge.moon{background:#1b1348}
+.badge.cloud{background:linear-gradient(135deg,#6f63c6,#3d3290)}
+.badge.rain{background:linear-gradient(135deg,#7f89cc,#474c98)}
+.title{font-size:1.25rem;font-weight:500;margin-bottom:22px}
+.hl{position:relative;overflow:hidden;background:#d3ebff;color:#1f2352;border-radius:14px;padding:18px 20px;min-height:160px;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.hl .ico{position:absolute;right:-26px;top:-30px;width:140px;height:140px}
+.hl .ico svg{width:100%;height:100%}
+.hl h3{font-size:1.65rem;font-weight:500;position:relative}
+.hl .d{text-transform:uppercase;font-size:1rem;position:relative}
+.hl .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:36px;position:relative}
+.hl .row div{font-size:1.05rem;line-height:1.15}
+.hl .row small{display:block;font-size:.6rem;letter-spacing:.5px;text-transform:uppercase}
+.li{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.li:last-child{border:0}
+.li .n{font-size:1.25rem;font-weight:500}
+.li .n small{display:block;font-size:1.05rem;color:#b9b2e4;font-weight:400;text-transform:capitalize}
+.li .p{display:flex;align-items:center;gap:12px;font-size:1.3rem}
+.li .p svg{width:42px;height:42px}
+.note{color:#a9a1dc;text-align:center;padding:120px 10px;line-height:1.6}
+@media(max-width:760px){body{padding:0}.stage{gap:0}.phone{width:100%;border-radius:0;min-height:100vh}.status{display:none}.menu{top:64px}}
